@@ -61,7 +61,11 @@
     <script type="text/javascript">
       $(function() {
         var onDone = function(data) {
-          $('#txtResult').val(data.responseText);
+          if (data.status < 300) {
+            $('#txtResult').val(data.responseText);
+          } else {
+            $('#txtResult').val(data.statusText);
+          }
         };
 
         $('#btnEncrypt').click(function() {
