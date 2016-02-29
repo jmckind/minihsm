@@ -1,0 +1,10 @@
+---
+
+- name: Provision node(s)
+  hosts: all
+  gather_facts: yes
+  become: yes
+  roles:
+    - common
+    - hsm
+    - nginx

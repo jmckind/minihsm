@@ -1,0 +1,2 @@
+[hsm]
+minihsm ansible_ssh_host=10.10.10.215

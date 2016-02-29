@@ -1,0 +1,21 @@
+---
+
+- name: ensure required packages are present
+  apt: name={{ item }} state=present
+  with_items:
+    - nginx
+
+- name: ensure the site configuration file is present
+  copy: src=minihsm.conf dest=/etc/nginx/sites-available/minihsm mode=0644
+  notify: reload nginx
+
+- name: ensure the site is enabled
+  file: src=/etc/nginx/sites-available/minihsm dest=/etc/nginx/sites-enabled/minihsm state=link
+  notify: reload nginx
+
+- name: ensure the default site is disabled
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: reload nginx
+
+- name: ensure nginx is started and enabled at boot
+  service: name=nginx state=started enabled=yes

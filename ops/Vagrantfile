@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = "ubuntu/trusty64"
+    config.vm.hostname = "minihsm"
+    config.vm.network "forwarded_port", guest: 80, host: 8000
+
+    config.vm.provider "virtualbox" do |vbx|
+        vbx.name = "minihsm"
+        vbx.memory = 1024
+        vbx.cpus = 1
+
+        vbx.customize ["modifyvm", :id, "--usb", "on", "--usbehci", "on"]
+        vbx.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'Yubikey', '--vendorid', '0x1050', '--productid', '0x0407']
+    end
+end
