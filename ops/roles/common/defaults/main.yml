@@ -3,3 +3,5 @@
 repo_url: https://github.com/jmckind/minihsm.git
 repo_branch: master
 repo_dest: /opt/minihsm
+
+virtualenv_dir: "{{ repo_dest }}/.venv"

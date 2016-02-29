@@ -5,7 +5,17 @@
   with_items:
     - git
     - python-pip
+    - python-virtualenv
     - vim
 
 - name: ensure git repo is present
   git: repo={{ repo_url }} version={{ repo_branch }} dest={{ repo_dest }}
+
+- name: ensure virtualenv is present
+  command: virtualenv {{ virtualenv_dir }} creates={{ virtualenv_dir }}
+
+- name: ensure pip is updated
+  pip: name=pip state=latest virtualenv={{ virtualenv_dir }}
+
+# - name: ensure python modules are present
+#   pip: requirements={{ repo_dest }}/requirements.txt virtualenv={{ virtualenv_dir }}
