@@ -1,0 +1,3 @@
+# minihsm
+
+A budget HSM solution, use at your own discretion or peril...
