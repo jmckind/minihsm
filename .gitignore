@@ -1,6 +1,9 @@
 # Vagrant artifacts
 .vagrant
 
+# Virtual environments
+.venv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
